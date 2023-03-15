@@ -26,12 +26,10 @@
 		},
 		{ quantity: 0, price: 0 }
 	);
-
-	let cartToggle = false;
 </script>
 
 <div class="grid grid-cols-[200px_minmax(100px,_1fr)_400px] bg-base-100">
-	<div class="h-screen bg-base-300">
+	<div class="h-screen bg-base-300 sticky top-0">
 		<h1 class="font-bold text-center p-2 pb-0">SVELTEKIT DEMO</h1>
 		<div class="p-2 ">
 			<form on:submit|preventDefault={(e) => goto('/search/' + e.target.search.value)}>
@@ -43,19 +41,18 @@
 				/>
 			</form>
 		</div>
-		<Categories data={data.categories.values} />
+		<div class="h-full overflow-y-auto">
+			<Categories data={data.categories} />
+		</div>
 	</div>
 
-	<div class=" h-screen overflow-y-auto">
+	<div class="overflow-y-auto">
 		<Transition url={data.url}>
 			<slot />
 		</Transition>
 	</div>
-	<div class="bg-base-200 h-screen overflow-y-auto flex flex-col justify-between">
-		<div class="flex flex-col h-full justify-between place-items-center">
-			<CartProgress />
-		</div>
-
+	<div class="bg-base-200 h-screen sticky top-0">
+		<CartProgress />
 		<Cart {total} />
 	</div>
 </div>

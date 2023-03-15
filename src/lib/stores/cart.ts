@@ -13,12 +13,12 @@ cart.subscribe((value) => {
 
 // add item to cart
 function add(p) {
-	cart.update((cart) => [...cart, { p, quantity: 1 }]);
+	cart.update((cart) => [{ ...p, quantity: 1 }, ...cart]);
 }
 
 // remove item from cart
-function remove(id: number) {
-	cart.update((cart) => cart.filter((item) => item[0] !== id));
+function remove(id) {
+	cart.update((cart) => cart.filter((item) => item.id !== id));
 }
 
 // remove all items from cart
@@ -29,11 +29,11 @@ function removeAll() {
 // add one quantity to a item in the cart, the quantity cant be more than stock
 function addQuantity(id) {
 	cart.update((cart) => {
-		const item = cart.find((item) => item[0] === id);
+		const item = cart.find((item) => item.id === id);
 		if (item.quantity >= item.stock) {
 			return cart;
 		}
-		return cart.map((item) => (item[0] === id ? { ...item, quantity: item.quantity + 1 } : item));
+		return cart.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item));
 	});
 }
 
@@ -41,11 +41,11 @@ function addQuantity(id) {
 // if the quantity is 1, the item will be removed from the cart
 function removeOne(id) {
 	cart.update((cart) => {
-		const item = cart.find((item) => item[0] === id);
+		const item = cart.find((item) => item.id === id);
 		if (item.quantity <= 1) {
-			return cart.filter((item) => item[0] !== id);
+			return cart.filter((item) => item.id !== id);
 		}
-		return cart.map((item) => (item[0] === id ? { ...item, quantity: item.quantity - 1 } : item));
+		return cart.map((item) => (item.id === id ? { ...item, quantity: item.quantity - 1 } : item));
 	});
 }
 

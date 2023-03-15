@@ -18,7 +18,7 @@
 	<Breadcrumb data={breadcrumb} />
 
 	<section class="grid grid-cols-2">
-		{#each data.products.values as p}
+		{#each data.products.products as p}
 			<ProductCard {p} />
 		{/each}
 	</section>

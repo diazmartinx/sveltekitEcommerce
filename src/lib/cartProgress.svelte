@@ -18,7 +18,7 @@
 	const max = 10000;
 </script>
 
-<div class="m-2">
+<div class="p-2">
 	{#if total >= 10000}
 		<div class="alert alert-success shadow-lg p-2">
 			<div>
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 	{:else}
-		<div>
+		<div class="flex flex-row items-center gap-1">
 			<div class="badge badge-lg badge-neutral">${total}</div>
 			{#if total < max / 2}
 				<progress class="progress progress-error w-56 bg-neutral" value={$progress} {max} />
