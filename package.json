@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "^2.3.1",
 		"daisyui": "^2.47.0",
 		"svelte-lazy": "^1.1.0"
 	}
