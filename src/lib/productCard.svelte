@@ -38,7 +38,7 @@
 			{#await fetchImage(p.images[0])}
 				<div class="h-full bg-base-200" />
 			{:then src}
-				<img {src} alt="" class="h-64 w-64" />
+				<img {src} alt={p.name} class="h-64 w-64 object-cover" />
 			{/await}
 		</div>
 		<h1>{p.title}</h1>
