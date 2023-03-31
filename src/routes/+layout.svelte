@@ -41,7 +41,7 @@
 				/>
 			</form>
 		</div>
-		<div class="h-full overflow-y-auto">
+		<div class="h-[calc(100vh-96px)] overflow-y-auto">
 			<Categories data={data.categories} />
 		</div>
 	</div>

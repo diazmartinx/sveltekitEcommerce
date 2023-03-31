@@ -33,22 +33,26 @@
 		<span class="sr-only">Loading...</span>
 	</div>
 {:else}
-	<div in:fly={{ delay: 175 * index }} class="border w-full h-full p-2 border-neutral bg-base-200">
-		<div class="h-64 w-64">
+	<div
+		in:fly={{ delay: 175 * index }}
+		class="border w-full h-full p-2 border-neutral bg-base-200 grid grid-flow-row"
+	>
+		<div class="w-64">
 			{#await fetchImage(p.images[0])}
 				<div class="h-full bg-base-200" />
 			{:then src}
-				<img {src} alt={p.name} class="h-64 w-64 object-cover" />
+				<img {src} alt={p.name} class="h-auto w-auto object-cover" />
 			{/await}
 		</div>
-		<h1>{p.title}</h1>
-		<p>{p.description}</p>
-		<p>{p.price}</p>
-		<p>{p.stock}</p>
-		{#if inCart}
-			<CartControllers item={inCart} />
-		{:else}
-			<button class="btn btn-sm btn-primary" on:click={cart.add(p)}>ADD TO CART</button>
-		{/if}
+		<div class="p-2 w-full">
+			<h1 class="font-bold text-2xl">{p.title}</h1>
+			<p class="font-bold">${p.price}</p>
+			<p>stock: {p.stock}</p>
+			{#if inCart}
+				<CartControllers item={inCart} />
+			{:else}
+				<button class="btn btn-sm btn-primary" on:click={cart.add(p)}>ADD TO CART</button>
+			{/if}
+		</div>
 	</div>
 {/if}
